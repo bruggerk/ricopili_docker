@@ -1,5 +1,9 @@
 FROM centos
 
+MAINTAINER Kim Brugger <kim.brugger@uib.no>
+LABEL authors="Kim Brugger" \
+    description="Docker image containing an installation of the ricopili tools version: 2019_Feb_6.001"
+
 #Stuff we need:
 RUN yum install -y epel-release && \
     yum install -y libgomp perl bzip2 R mailx python2-pip python-devel perl-IO-Zlib less vim  && \
