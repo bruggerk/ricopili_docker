@@ -37,7 +37,7 @@ RUN curl -Lo /tmp/rp_bin.tgz https://sites.google.com/a/broadinstitute.org/ricop
    tar zxvf /tmp/rp_bin.tgz -C /ricopili/
 
 
-COPY ricopili.conf /root/
+RUN curl -o  /root/ricopili.conf https://github.com/bruggerk/ricopili_docker/ricopili.conf
 
 
 ENV PATH /ricopili/rp_bin:/ricopili/rp_bin/pdfjam:$PATH
