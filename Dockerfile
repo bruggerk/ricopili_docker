@@ -43,6 +43,7 @@ RUN curl -Lo /tmp/rp_bin.tgz https://sites.google.com/a/broadinstitute.org/ricop
 
 COPY ricopili.conf /root/
 
+RUN touch /root/preimp_dir_info
 
 ENV PATH /ricopili/rp_bin:/ricopili/rp_bin/pdfjam:$PATH
 ENV rp_perlpackages /ricopili/rp_dep/perl_modules/
