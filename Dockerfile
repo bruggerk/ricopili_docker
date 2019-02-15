@@ -10,11 +10,8 @@ RUN yum install -y epel-release && \
     yum clean  packages
 
 
-
-# nice to have stuff during development
-
 RUN Rscript -e 'install.packages("rmeta", repos = "http://cran.us.r-project.org")'
-
+    
 
 RUN pip install --upgrade pip --no-cache-dir
 RUN /usr/bin/pip install  --no-cache-dir --no-deps bitarray==0.8 pandas==0.20 pybedtools==0.7 pysam==0.15 
@@ -41,7 +38,7 @@ RUN curl -Lo /tmp/rp_bin.tgz https://sites.google.com/a/broadinstitute.org/ricop
    tar zxvf /tmp/rp_bin.tgz -C /ricopili/
 
 
-RUN curl -o  /root/ricopili.conf https://github.com/bruggerk/ricopili_docker/ricopili.conf
+RUN curl -o  /root/ricopili.conf https://raw.githubusercontent.com/bruggerk/ricopili_docker/master/ricopili.conf
 
 
 ENV PATH /ricopili/rp_bin:/ricopili/rp_bin/pdfjam:$PATH
