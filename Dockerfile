@@ -38,11 +38,11 @@ RUN curl -Lo /tmp/rp_bin.tgz https://sites.google.com/a/broadinstitute.org/ricop
    tar zxvf /tmp/rp_bin.tgz -C /ricopili/
 
 
-RUN curl -o  /root/ricopili.conf https://raw.githubusercontent.com/bruggerk/ricopili_docker/master/ricopili.conf
+RUN curl -o  /ricopili/ricopili.conf https://raw.githubusercontent.com/bruggerk/ricopili_docker/master/ricopili.conf
 
 
 ENV PATH /ricopili/rp_bin:/ricopili/rp_bin/pdfjam:$PATH
 ENV rp_perlpackages /ricopili/rp_dep/perl_modules/
-ENV RPHOME /root
+ENV RPHOME /ricopili
 
 
