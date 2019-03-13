@@ -23,7 +23,7 @@ RUN curl -o /tmp/Miniconda2-latest-Linux-x86_64.sh https://repo.anaconda.com/min
 
 
 
-RUN mkdir -p  /ricopili/{rp_bin,rp_dep} /scratch /refs/
+RUN mkdir -p  /ricopili/{rp_bin,rp_dep} /scratch /refs/ /cluster /work /tsd /projects
 
 
 RUN curl -o /tmp/rp_dep.tgz  https://personal.broadinstitute.org/sripke/share_links/JeklRDhPD6FKm8Gnda7JsUOsMan2P2_Ricopili_Dependencies.1118b.tar.gz/Ricopili_Dependencies.1118b.tar.gz && \
