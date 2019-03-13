@@ -28,14 +28,17 @@ RUN mkdir -p  /ricopili/{rp_bin,rp_dep} /scratch /refs/
 
 RUN curl -o /tmp/rp_dep.tgz  https://personal.broadinstitute.org/sripke/share_links/JeklRDhPD6FKm8Gnda7JsUOsMan2P2_Ricopili_Dependencies.1118b.tar.gz/Ricopili_Dependencies.1118b.tar.gz && \
   tar zxvf /tmp/rp_dep.tgz -C /ricopili/rp_dep/ && \
-  rm /tmp/rp_dep.tgz #&& \
+  chmod 755 /ricopili/rp_dep/ && \
+  rm /tmp/rp_dep.tgz && \
   chmod 755 -R /ricopili/rp_dep/ && \
   cd /ricopili/rp_dep/ldsc/ && \
   conda env create --file environment.yml
 
 
 RUN curl -Lo /tmp/rp_bin.tgz https://sites.google.com/a/broadinstitute.org/ricopili/download/rp_bin.2019_Feb_6.001.tar.gz && \
-   tar zxvf /tmp/rp_bin.tgz -C /ricopili/
+   tar zxvf /tmp/rp_bin.tgz -C /ricopili/ && \
+   chmod 755 /ricopili/rp_bin/ 
+
 
 
 RUN curl -o  /ricopili/ricopili.conf https://raw.githubusercontent.com/bruggerk/ricopili_docker/master/ricopili.conf
