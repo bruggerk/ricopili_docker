@@ -26,7 +26,11 @@ docker run -v`pwd`:/run/ -w /run ricopili:latest pcaer
 Special directories
 ===================
 
-The container have been build and configured with two special directories that can be mounted to local directories:
+The container have been build and configured with two special directories that can be mounted to local directories. Some of these are required for TSD (Norwegian Service for Sensitive Data), and migth need to be tweaked for other services.
 
-*/refs: reference data to be used in the analysis
-*/scratch: where tmp files are placed
+* /refs: reference data to be used in the analysis
+* /scratch: where tmp files are placed
+* /cluster (tsd requirement)
+* /work (tsd requirement) 
+* /tsd (tsd requirement) 
+* /projects (tsd requirement)
