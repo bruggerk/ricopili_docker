@@ -8,9 +8,25 @@ Docker version of the [ricopili package](https://sites.google.com/a/broadinstitu
 How to use this image
 =====================
 
-Run a simple command:
+Run a command (pcaer in this case):
 ```bash
 
 docker run ricopili:latest pcaer
 
 ```
+However as the majority of the tools needs, and generates, data you will need to make a directory available through volumes:
+
+
+```bash
+# This will run docker mounting your current working directory in /run, and execute the program in /run
+docker run -v`pwd`:/run/ -w /run ricopili:latest pcaer
+
+```
+
+Special directories
+===================
+
+The container have been build and configured with two special directories that can be mounted to local directories:
+
+*/refs: reference data to be used in the analysis
+*/scratch: where tmp files are placed
