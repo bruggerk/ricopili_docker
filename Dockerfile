@@ -35,7 +35,7 @@ RUN curl -o /tmp/rp_dep.tgz  https://personal.broadinstitute.org/sripke/share_li
   conda env create --file environment.yml
 
 
-RUN curl -Lo /tmp/rp_bin.tgz https://sites.google.com/a/broadinstitute.org/ricopili/download/rp_bin.2019_Feb_6.001.tar.gz && \
+RUN curl -Lo /tmp/rp_bin.tgz https://sites.google.com/a/broadinstitute.org/ricopili/download/rp_bin.2019_Feb_18.001.tar.gz && \
    tar zxvf /tmp/rp_bin.tgz -C /ricopili/ && \
    chmod 755 /ricopili/rp_bin/ 
 
