@@ -2,7 +2,7 @@ FROM centos
 
 MAINTAINER Kim Brugger <kim.brugger@uib.no>
 LABEL authors="Kim Brugger" \
-    description="Docker image containing an installation of the ricopili tools version: 2019_Feb_6.001"
+    description="Docker image containing an installation of the ricopili tools version: 2019_Feb_18.001"
 
 #Stuff we need:
 RUN yum install -y epel-release && \
