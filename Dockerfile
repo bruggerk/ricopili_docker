@@ -19,7 +19,7 @@ RUN mkdir -p  /ricopili/bin \
 	      /scratch /refs/ /cluster /work /tsd /projects /net
 
 RUN curl -Lo /tmp/rp_bin.tgz https://sites.google.com/a/broadinstitute.org/ricopili/download/rp_bin.2019_Jun_25.001.tar.gz && \
-      tar zxvf /tmp/rp_bin.tgz --strip 1 -C /ricopili/ && \
+      tar zxvf /tmp/rp_bin.tgz --strip 1 -C /ricopili/bin/ && \
       chmod 755 -R /ricopili/bin/ 
 
 RUN curl -Lo /tmp/rp_dep.tgz https://storage.googleapis.com/cloud-ricopili/dependencies/Ricopili_Dependencies.1118b.tar.gz && \
