@@ -2,7 +2,6 @@ FROM ubuntu:18.04
 
 MAINTAINER Kim Brugger <kim.brugger@uib.no>
 LABEL authors="Kim Brugger" \
-<<<<<<< HEAD
     description="Docker image containing an installation of the ricopili tools version: 2019_Jun_25.001"
 
 # for the tzdata package
