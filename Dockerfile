@@ -27,18 +27,22 @@ RUN curl -Lo /tmp/rp_dep.tgz https://storage.googleapis.com/cloud-ricopili/depen
     chmod 755 /ricopili/dependencies/ && \
     rm /tmp/rp_dep.tgz 
 
+
+RUN Rscript -e 'install.packages("rmeta", repos = "http://cran.us.r-project.org")'
+
+
 RUN cd /ricopili/reference && curl -LO https://storage.googleapis.com/cloud-ricopili/dependencies/HRC.r1-1.EGA.GRCh37.metafiles.deploy.tar.gz.cksum
 RUN cd /ricopili/reference \
-    && curl -LO https://storage.googleapis.com/cloud-ricopili/dependencies/HRC.r1-1.EGA.GRCh37.metafiles.deploy.tar.gz \
-    && tar zxf HRC.r1-1.EGA.GRCh37.metafiles.deploy.tar.gz
-    && rm HRC.r1-1.EGA.GRCh37.metafiles.deploy.tar.gz
+    && curl -LO https://storage.googleapis.com/cloud-ricopili/dependencies/HRC.r1-1.EGA.GRCh37.metafiles.deploy.tar.gz #\
+#    && tar zxf HRC.r1-1.EGA.GRCh37.metafiles.deploy.tar.gz
+#    && rm HRC.r1-1.EGA.GRCh37.metafiles.deploy.tar.gz
     
 
 RUN cd /ricopili/reference && curl -LO https://storage.googleapis.com/cloud-ricopili/dependencies/HRC.r1-1.EGA.GRCh37.1KG_pops.tar.gz.cksum
 RUN cd /ricopili/reference \
-    && curl -LO https://storage.googleapis.com/cloud-ricopili/dependencies/HRC.r1-1.EGA.GRCh37.1KG_pops.tar.gz \
-    && tar zxf HRC.r1-1.EGA.GRCh37.1KG_pops.tar.gz \ 
-    && rm HRC.r1-1.EGA.GRCh37.1KG_pops.tar.gz
+    && curl -LO https://storage.googleapis.com/cloud-ricopili/dependencies/HRC.r1-1.EGA.GRCh37.1KG_pops.tar.gz #\
+#    && tar zxf HRC.r1-1.EGA.GRCh37.1KG_pops.tar.gz \ 
+#    && rm HRC.r1-1.EGA.GRCh37.1KG_pops.tar.gz
 
 RUN cd /ricopili/reference && curl -LO https://storage.googleapis.com/cloud-ricopili/dependencies/human_g1k_v37.fasta.gz.cksum
 RUN cd /ricopili/reference \
