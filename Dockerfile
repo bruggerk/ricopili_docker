@@ -2,6 +2,7 @@ FROM ubuntu:18.04
 
 MAINTAINER Kim Brugger <kim.brugger@uib.no>
 LABEL authors="Kim Brugger" \
+<<<<<<< HEAD
     description="Docker image containing an installation of the ricopili tools version: 2019_Jun_25.001"
 
 # for the tzdata package
@@ -27,12 +28,6 @@ RUN curl -Lo /tmp/rp_dep.tgz https://storage.googleapis.com/cloud-ricopili/depen
     chmod 755 /ricopili/dependencies/ && \
     rm /tmp/rp_dep.tgz && \
     chmod 755 -R /ricopili/dependencies/ 
-
-#    cd /ricopili/rp_dep/ldsc/ && \
-#    conda env create --file environment.yml
-
-
-
 
 
 RUN cd /ricopili/reference && curl -LO https://storage.googleapis.com/cloud-ricopili/dependencies/HRC.r1-1.EGA.GRCh37.metafiles.deploy.tar.gz.cksum
@@ -60,7 +55,6 @@ COPY ricopili_serial_deploy_install.v2.pl /tmp/
 
 #RUN /tmp/ricopili_serial_deploy_install.v2.pl --initials RP --rp_bin_tar /tmp/rp_bin.tgz
 
-
 #Stuff we need:
 RUN yum install -y epel-release && \
     yum install -y libgomp perl bzip2 R mailx python2-pip python-devel perl-IO-Zlib less vim  && \
@@ -81,7 +75,6 @@ RUN curl -o /tmp/Miniconda2-latest-Linux-x86_64.sh https://repo.anaconda.com/min
 
 
 
-
 RUN curl -o /tmp/rp_dep.tgz  https://personal.broadinstitute.org/sripke/share_links/JeklRDhPD6FKm8Gnda7JsUOsMan2P2_Ricopili_Dependencies.1118b.tar.gz/Ricopili_Dependencies.1118b.tar.gz && \
   tar zxvf /tmp/rp_dep.tgz -C /ricopili/rp_dep/ && \
   chmod 755 /ricopili/rp_dep/ && \
@@ -92,6 +85,8 @@ RUN curl -o /tmp/rp_dep.tgz  https://personal.broadinstitute.org/sripke/share_li
 
 
 RUN   tar zxvf /tmp/rp_bin.tgz -C /ricopili/ && \
+RUN curl -Lo /tmp/rp_bin.tgz https://sites.google.com/a/broadinstitute.org/ricopili/download/rp_bin.2019_Feb_18.001.tar.gz && \
+   tar zxvf /tmp/rp_bin.tgz -C /ricopili/ && \
    chmod 755 /ricopili/rp_bin/ 
 
 
