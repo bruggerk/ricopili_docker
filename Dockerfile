@@ -13,8 +13,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends curl  ca-certif
 	     libreadline-dev xorg-dev libxml2-dev libcurl4-gnutls-dev  libgfortran3  \
 	     && apt-get clean
 
+
+RUN useradd -d /ricopili -U -m -s /bin/bash ricopili
+
 RUN mkdir -p  /ricopili/bin \
               /ricopili/dependencies \
+              /ricopili/log/ \
 	      /ricopili/reference \
 	      /scratch /refs/ /cluster /work /tsd /projects /net
 
@@ -29,6 +33,13 @@ RUN curl -Lo /tmp/rp_dep.tgz https://storage.googleapis.com/cloud-ricopili/depen
 
 
 RUN Rscript -e 'install.packages("rmeta", repos = "http://cran.us.r-project.org")'
+
+
+RUN curl -o /tmp/Miniconda2-latest-Linux-x86_64.sh https://repo.anaconda.com/miniconda/Miniconda2-latest-Linux-x86_64.sh && \
+    sh /tmp/Miniconda2-latest-Linux-x86_64.sh -b -f -p /usr/local/ && \
+    rm /tmp/Miniconda2-latest-Linux-x86_64.sh &&\
+    cd /ricopili/dependencies/ldsc/ && \
+    conda env create --file environment.yml
 
 
 #RUN cd /ricopili/reference && curl -LO https://storage.googleapis.com/cloud-ricopili/dependencies/HRC.r1-1.EGA.GRCh37.metafiles.deploy.tar.gz.cksum
@@ -52,19 +63,26 @@ RUN Rscript -e 'install.packages("rmeta", repos = "http://cran.us.r-project.org"
 
 #RUN /tmp/ricopili_serial_deploy_install.v2.pl --initials RP --rp_bin_tar /tmp/rp_bin.tgz
 
-
-#RUN Rscript -e 'install.packages("rmeta", repos = "http://cran.us.r-project.org")'
     
 
 #RUN pip install --upgrade pip --no-cache-dir
 #RUN /usr/bin/pip install  --no-cache-dir --no-deps bitarray==0.8 pandas==0.20 pybedtools==0.7 pysam==0.15 
 
+#log-files
+RUN touch /ricopili/log/preimp_dir_info \
+          /ricopili/log/impute_dir_info \
+	  /ricopili/log/pcaer_info \
+	  /ricopili/log/idtager_info \
+	  /ricopili/log/repqc2_info \
+	  /ricopili/log/areator_info \
+	  /ricopili/log/merge_caller_info \
+	  /ricopili/log/postimp_navi_info \
+	  /ricopili/log/reference_dir_info \
+	  /ricopili/log/test_info \
+	  /ricopili/log/clumper_info
 
-#RUN curl -o /tmp/Miniconda2-latest-Linux-x86_64.sh https://repo.anaconda.com/miniconda/Miniconda2-latest-Linux-x86_64.sh && \
-#  sh /tmp/Miniconda2-latest-Linux-x86_64.sh -b -f -p /usr/local/ && \
-#  rm /tmp/Miniconda2-latest-Linux-x86_64.sh
 
-
+#RUN curl -o /ricopili/rp_config.custom.serial.txt https:/personal.broadinstitute.org/sripke/share_links/rp_config_collections/rp_config.custom.serial.txt
 
 RUN curl -o  /ricopili/ricopili.conf https://raw.githubusercontent.com/bruggerk/ricopili_docker/master/ricopili.conf
 
