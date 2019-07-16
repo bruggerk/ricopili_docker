@@ -10,7 +10,7 @@ RUN ln -fs /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 
 RUN apt-get update && apt-get install -y --no-install-recommends curl  ca-certificates \
              r-base make tk-dev gcc gfortran texlive texlive-fonts-extra \
-	     libreadline-dev xorg-dev libxml2-dev libcurl4-gnutls-dev  libgfortran3  \
+	     libreadline-dev xorg-dev libxml2-dev libcurl4-gnutls-dev  libgfortran3 \
 	     && apt-get clean
 
 RUN useradd -d /ricopili -U -m -s /bin/bash ricopili
@@ -31,10 +31,10 @@ RUN curl -Lo /tmp/rp_dep.tgz https://storage.googleapis.com/cloud-ricopili/depen
     chmod 755 /ricopili/dependencies/ && \
     rm /tmp/rp_dep.tgz 
 
-RUN Rscript -e 'install.packages("rms",   repos="https://cloud.r-project.org" lib="/ricopili/dependencies/R_packages")' && \
-    Rscript -e 'install.packages("rmeta", repos="https://cloud.r-project.org")' && \
-    Rscript -e 'install.packages("pROC",  repos="https://cloud.r-project.org")' && \
-    Rscript -e 'install.packages("MASS",  repos="https://cloud.r-project.org")'
+RUN Rscript -e 'install.packages("rmeta", repos="https://cloud.r-project.org", lib="/ricopili/dependencies/R_packages")' #&& \
+    #Rscript -e 'install.packages("rms",   repos="https://cloud.r-project.org" lib="/ricopili/dependencies/R_packages")' && \
+    #Rscript -e 'install.packages("pROC",  repos="https://cloud.r-project.org")' && \
+    #Rscript -e 'install.packages("MASS",  repos="https://cloud.r-project.org")'
 
 RUN curl -o /tmp/Miniconda2-latest-Linux-x86_64.sh https://repo.anaconda.com/miniconda/Miniconda2-latest-Linux-x86_64.sh && \
     sh /tmp/Miniconda2-latest-Linux-x86_64.sh -b -f -p /usr/local/ && \
@@ -61,8 +61,8 @@ RUN curl -o /tmp/Miniconda2-latest-Linux-x86_64.sh https://repo.anaconda.com/min
 #    && curl -LO https://storage.googleapis.com/cloud-ricopili/dependencies/human_g1k_v37.fasta.gz \
 #    && gunzip -q human_g1k_v37.fasta.gz || touch /tmp/gzip.warning
 
-RUN pip install --upgrade pip --no-cache-dir && \
-    pip install  --no-cache-dir --no-deps bitarray==0.8 pandas==0.20 scipy #pybedtools==0.7 pysam==0.15 
+#RUN pip install --upgrade pip --no-cache-dir && \
+#    pip install  --no-cache-dir --no-deps bitarray==0.8 pandas==0.20 scipy #pybedtools==0.7 pysam==0.15 
 
 #log-files
 RUN touch /ricopili/log/preimp_dir_info \
@@ -78,6 +78,10 @@ RUN touch /ricopili/log/preimp_dir_info \
 	  /ricopili/log/clumper_info
 
 #RUN curl -o /ricopili/rp_config.custom.serial.txt https:/personal.broadinstitute.org/sripke/share_links/rp_config_collections/rp_config.custom.serial.txt
+
+# We cannot send emails from docker, so make a fake 
+RUN touch /bin/mail && chmod 755 /bin/mail
+
 
 #RUN curl -o  /ricopili/ricopili.conf https://raw.githubusercontent.com/bruggerk/ricopili_docker/master/ricopili.conf
 # To build wo/ caching from now on: docker build -t your-image --build-arg CACHEBUST=$(date +%s)
