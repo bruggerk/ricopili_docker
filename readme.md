@@ -50,8 +50,10 @@ curl -LO https://storage.cloud.google.com/cloud-ricopili/reference-genotypes/1KG
 wget https://storage.googleapis.com/cloud-ricopili/dependencies/HRC.r1-1.EGA.GRCh37.metafiles.deploy.tar.gz 
 wget https://storage.googleapis.com/cloud-ricopili/dependencies/HRC.r1-1.EGA.GRCh37.1KG_pops.tar.gz
 wget https://storage.googleapis.com/cloud-ricopili/dependencies/human_g1k_v37.fasta.gz
-# Not required, but recomended  ( very large file!)
-wget https://storage.cloud.google.com/cloud-ricopili/reference-genotypes/1KG_ref_ricopili.tar.gz
+
+
+# Not required, but recomended  ( very large file!), note cannot be downloaded with curl/wget. Download using a browser
+https://storage.cloud.google.com/cloud-ricopili/reference-genotypes/1KG_ref_ricopili.tar.gz
 
 # uncompress the reference files
 tar zxf HRC.r1-1.EGA.GRCh37.metafiles.deploy.tar.gz 
